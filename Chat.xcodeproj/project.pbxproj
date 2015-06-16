@@ -14,6 +14,10 @@
 		61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFD81B301A47003B3FE8 /* Images.xcassets */; };
 		61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */; };
 		61FECFE81B301A47003B3FE8 /* ChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFE71B301A47003B3FE8 /* ChatTests.m */; };
+		61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFF21B302328003B3FE8 /* LoginViewController.m */; };
+		61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFF31B302328003B3FE8 /* LoginViewController.xib */; };
+		61FECFF91B30287F003B3FE8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFF71B30287F003B3FE8 /* RegisterViewController.m */; };
+		61FECFFA1B30287F003B3FE8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 		61FECFE11B301A47003B3FE8 /* ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61FECFE61B301A47003B3FE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61FECFE71B301A47003B3FE8 /* ChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatTests.m; sourceTree = "<group>"; };
+		61FECFF11B302328003B3FE8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		61FECFF21B302328003B3FE8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		61FECFF31B302328003B3FE8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		61FECFF61B30287F003B3FE8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		61FECFF71B30287F003B3FE8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +98,12 @@
 				61FECFD51B301A47003B3FE8 /* Main.storyboard */,
 				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
 				61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */,
+				61FECFF61B30287F003B3FE8 /* RegisterViewController.h */,
+				61FECFF71B30287F003B3FE8 /* RegisterViewController.m */,
+				61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */,
+				61FECFF11B302328003B3FE8 /* LoginViewController.h */,
+				61FECFF21B302328003B3FE8 /* LoginViewController.m */,
+				61FECFF31B302328003B3FE8 /* LoginViewController.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
 			);
 			path = Chat;
@@ -199,6 +215,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
+				61FECFFA1B30287F003B3FE8 /* RegisterViewController.xib in Resources */,
 				61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
 				61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */,
@@ -219,6 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61FECFF91B30287F003B3FE8 /* RegisterViewController.m in Sources */,
+				61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */,
 				61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
