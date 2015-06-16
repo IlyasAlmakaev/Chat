@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"Вход";
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Войти" style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Войти" style:UIBarButtonItemStyleDone target:self action:@selector(enter)];
 }
 
 - (IBAction)registration:(id)sender
@@ -33,6 +33,11 @@
     
     self.navigationC = [[UINavigationController alloc] initWithRootViewController:self.registerVC];
     [self presentViewController:self.navigationC animated:YES completion:nil];
+}
+
+- (void)enter
+{
+    
 }
 
 @end
