@@ -23,10 +23,8 @@
     // create an instance of the view controller you want to be displayed first
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     
-    UINavigationController *loginNC = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    
     // set it as the root view controller of the application's window
-    [self.window setRootViewController:loginNC];
+    [self.window setRootViewController:loginVC];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

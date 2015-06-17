@@ -7,37 +7,55 @@
 //
 
 #import "LoginViewController.h"
-#import "RegisterViewController.h"
+#import "ProfileViewController.h"
+#import <Quickblox/Quickblox.h>
 
 @interface LoginViewController ()
 
 - (IBAction)registration:(id)sender;
+- (IBAction)logON:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *loginField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-@property (strong, nonatomic) RegisterViewController *registerVC;
-@property (strong, nonatomic) UINavigationController *navigationC;
+@property (strong, nonatomic) UITabBarController *tabController;
 
 @end
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"Вход";
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Войти" style:UIBarButtonItemStyleDone target:self action:@selector(enter)];
 }
 
 - (IBAction)registration:(id)sender
 {
-    self.registerVC = [[RegisterViewController alloc] init];
-    
-    self.navigationC = [[UINavigationController alloc] initWithRootViewController:self.registerVC];
-    [self presentViewController:self.navigationC animated:YES completion:nil];
+    [self enterProfile];
 }
 
-- (void)enter
+- (IBAction)logON:(id)sender
 {
+    QBUUser *user = [QBUUser user];
+    user.password = self.passwordField.text;
+    user.login = self.loginField.text;
+    [self enterProfile];
+}
+
+- (void)enterProfile
+{
+    ProfileViewController *profileVC = [[ProfileViewController alloc] init];
     
+    UINavigationController *profileNC = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    
+    profileNC.tabBarItem.title = @"Профиль";
+    
+    self.tabController = [[UITabBarController alloc] init];
+    self.tabController.viewControllers = @[profileNC];
+    
+    [self presentViewController:self.tabController
+                       animated:YES
+                     completion:nil];
 }
 
 @end

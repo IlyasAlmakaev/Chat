@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2B4BDE250E19BB1E849368 /* libPods.a */; };
+		61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E891AD1B313E9800F77132 /* ProfileViewController.m */; };
+		61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E891AE1B313E9800F77132 /* ProfileViewController.xib */; };
+		61E891B21B317B7400F77132 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B11B317B7400F77132 /* CFNetwork.framework */; };
+		61E891B41B317B9300F77132 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B31B317B9300F77132 /* SystemConfiguration.framework */; };
+		61E891B61B317BC800F77132 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B51B317BC800F77132 /* MobileCoreServices.framework */; };
 		61FECFCE1B301A47003B3FE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFCD1B301A47003B3FE8 /* main.m */; };
 		61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFD01B301A47003B3FE8 /* AppDelegate.m */; };
 		61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFD31B301A47003B3FE8 /* ViewController.m */; };
@@ -17,8 +22,6 @@
 		61FECFE81B301A47003B3FE8 /* ChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFE71B301A47003B3FE8 /* ChatTests.m */; };
 		61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFF21B302328003B3FE8 /* LoginViewController.m */; };
 		61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFF31B302328003B3FE8 /* LoginViewController.xib */; };
-		61FECFF91B30287F003B3FE8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFF71B30287F003B3FE8 /* RegisterViewController.m */; };
-		61FECFFA1B30287F003B3FE8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,12 @@
 /* Begin PBXFileReference section */
 		177D2364BC713F960BA78256 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FEC9536C33C05582E847F5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		61E891AC1B313E9800F77132 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		61E891AD1B313E9800F77132 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		61E891AE1B313E9800F77132 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		61E891B11B317B7400F77132 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		61E891B31B317B9300F77132 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		61E891B51B317BC800F77132 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		61FECFC81B301A47003B3FE8 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61FECFCC1B301A47003B3FE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61FECFCD1B301A47003B3FE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,9 +59,6 @@
 		61FECFF11B302328003B3FE8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		61FECFF21B302328003B3FE8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		61FECFF31B302328003B3FE8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		61FECFF61B30287F003B3FE8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		61FECFF71B30287F003B3FE8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		6B2B4BDE250E19BB1E849368 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -61,6 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61E891B61B317BC800F77132 /* MobileCoreServices.framework in Frameworks */,
+				61E891B41B317B9300F77132 /* SystemConfiguration.framework in Frameworks */,
+				61E891B21B317B7400F77132 /* CFNetwork.framework in Frameworks */,
 				410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +87,9 @@
 		04772C6AA5F1A246D73586D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61E891B51B317BC800F77132 /* MobileCoreServices.framework */,
+				61E891B31B317B9300F77132 /* SystemConfiguration.framework */,
+				61E891B11B317B7400F77132 /* CFNetwork.framework */,
 				6B2B4BDE250E19BB1E849368 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -122,12 +134,12 @@
 				61FECFD51B301A47003B3FE8 /* Main.storyboard */,
 				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
 				61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */,
-				61FECFF61B30287F003B3FE8 /* RegisterViewController.h */,
-				61FECFF71B30287F003B3FE8 /* RegisterViewController.m */,
-				61FECFF81B30287F003B3FE8 /* RegisterViewController.xib */,
 				61FECFF11B302328003B3FE8 /* LoginViewController.h */,
 				61FECFF21B302328003B3FE8 /* LoginViewController.m */,
 				61FECFF31B302328003B3FE8 /* LoginViewController.xib */,
+				61E891AC1B313E9800F77132 /* ProfileViewController.h */,
+				61E891AD1B313E9800F77132 /* ProfileViewController.m */,
+				61E891AE1B313E9800F77132 /* ProfileViewController.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
 			);
 			path = Chat;
@@ -242,9 +254,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
-				61FECFFA1B30287F003B3FE8 /* RegisterViewController.xib in Resources */,
 				61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
+				61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */,
 				61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,11 +308,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61FECFF91B30287F003B3FE8 /* RegisterViewController.m in Sources */,
 				61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */,
 				61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
+				61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
