@@ -28,6 +28,13 @@
 
 - (void)exitProfile
 {
+    [QBRequest logOutWithSuccessBlock:^(QBResponse *response) {
+        // Successful logout
+        NSLog(@"logOut");
+    } errorBlock:^(QBResponse *response) {
+        // Handle error
+        NSLog(@"%@", [response.error description]);
+    }];
     
 }
 
