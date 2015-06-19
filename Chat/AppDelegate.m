@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Quickblox/Quickblox.h>
 #import "LoginViewController.h"
 
 @interface AppDelegate ()
@@ -16,7 +17,15 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
+    // Set QuickBlox credentials (You must create application in admin.quickblox.com)
+    [QBApplication sharedApplication].applicationId = 24489;
+    [QBConnection registerServiceKey:@"tqJwq2UjnssUPYL"];
+    [QBConnection registerServiceSecret:@"6MaUePxUDpq2cP5"];
+    [QBSettings setAccountKey:@"7HzPy4hwpFQwj4JpRcNi"];
+    
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

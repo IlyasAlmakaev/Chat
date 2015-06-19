@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import <Quickblox/Quickblox.h>
 
 @interface ProfileViewController ()
 
@@ -20,6 +21,9 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"Профиль";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Выйти" style:UIBarButtonItemStyleDone target:self action:@selector(exitProfile)];
+    
+
+    
 }
 
 - (void)exitProfile

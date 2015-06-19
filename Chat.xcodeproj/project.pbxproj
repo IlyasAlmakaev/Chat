@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2B4BDE250E19BB1E849368 /* libPods.a */; };
+		61E4274A1B33CCAE00143F7C /* CopmanionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */; };
+		61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */; };
 		61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E891AD1B313E9800F77132 /* ProfileViewController.m */; };
 		61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E891AE1B313E9800F77132 /* ProfileViewController.xib */; };
 		61E891B21B317B7400F77132 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B11B317B7400F77132 /* CFNetwork.framework */; };
@@ -37,6 +39,9 @@
 /* Begin PBXFileReference section */
 		177D2364BC713F960BA78256 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FEC9536C33C05582E847F5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		61E427471B33CCAE00143F7C /* CopmanionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopmanionsTableViewController.h; sourceTree = "<group>"; };
+		61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopmanionsTableViewController.m; sourceTree = "<group>"; };
+		61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopmanionsTableViewController.xib; sourceTree = "<group>"; };
 		61E891AC1B313E9800F77132 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		61E891AD1B313E9800F77132 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		61E891AE1B313E9800F77132 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -140,6 +145,9 @@
 				61E891AC1B313E9800F77132 /* ProfileViewController.h */,
 				61E891AD1B313E9800F77132 /* ProfileViewController.m */,
 				61E891AE1B313E9800F77132 /* ProfileViewController.xib */,
+				61E427471B33CCAE00143F7C /* CopmanionsTableViewController.h */,
+				61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */,
+				61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
 			);
 			path = Chat;
@@ -255,6 +263,7 @@
 			files = (
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
 				61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */,
+				61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
 				61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */,
 				61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */,
@@ -312,6 +321,7 @@
 				61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
+				61E4274A1B33CCAE00143F7C /* CopmanionsTableViewController.m in Sources */,
 				61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

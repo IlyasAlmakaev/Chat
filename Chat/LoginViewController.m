@@ -27,7 +27,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-}
+    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+        NSLog(@"Authorisation");
+    } errorBlock:^(QBResponse *response) {
+        NSLog(@"%@",[response.error description]);
+    }];}
 
 - (IBAction)registration:(id)sender
 {
@@ -36,10 +40,24 @@
 
 - (IBAction)logON:(id)sender
 {
-    QBUUser *user = [QBUUser user];
-    user.password = self.passwordField.text;
-    user.login = self.loginField.text;
-    [self enterProfile];
+    // Authenticate user
+    [QBRequest logInWithUserLogin:self.loginField.text password:self.passwordField.text
+                     successBlock:[self successBlock] errorBlock:[self errorBlock]];
+    
+}
+
+- (void (^)(QBResponse *response, QBUUser *user))successBlock
+{
+    return ^(QBResponse *response, QBUUser *user) {
+        [self enterProfile];
+    };
+}
+
+- (QBRequestErrorBlock)errorBlock
+{
+    return ^(QBResponse *response) {
+        NSLog(@"%@", [response.error description]);
+    };
 }
 
 - (void)enterProfile
