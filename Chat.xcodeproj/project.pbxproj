@@ -12,6 +12,8 @@
 		61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */; };
 		61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */; };
 		61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */; };
+		61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E427521B3412CA00143F7C /* CompanionsViewController.m */; };
+		61E427551B3412CA00143F7C /* CompanionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E427531B3412CA00143F7C /* CompanionsViewController.xib */; };
 		61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E891AD1B313E9800F77132 /* ProfileViewController.m */; };
 		61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E891AE1B313E9800F77132 /* ProfileViewController.xib */; };
 		61E891B21B317B7400F77132 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B11B317B7400F77132 /* CFNetwork.framework */; };
@@ -47,6 +49,9 @@
 		61E4274C1B3400C200143F7C /* CompanionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanionsTableViewCell.h; sourceTree = "<group>"; };
 		61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanionsTableViewCell.m; sourceTree = "<group>"; };
 		61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanionsTableViewCell.xib; sourceTree = "<group>"; };
+		61E427511B3412CA00143F7C /* CompanionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanionsViewController.h; sourceTree = "<group>"; };
+		61E427521B3412CA00143F7C /* CompanionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanionsViewController.m; sourceTree = "<group>"; };
+		61E427531B3412CA00143F7C /* CompanionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanionsViewController.xib; sourceTree = "<group>"; };
 		61E891AC1B313E9800F77132 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		61E891AD1B313E9800F77132 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		61E891AE1B313E9800F77132 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -156,6 +161,9 @@
 				61E4274C1B3400C200143F7C /* CompanionsTableViewCell.h */,
 				61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */,
 				61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */,
+				61E427511B3412CA00143F7C /* CompanionsViewController.h */,
+				61E427521B3412CA00143F7C /* CompanionsViewController.m */,
+				61E427531B3412CA00143F7C /* CompanionsViewController.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
 			);
 			path = Chat;
@@ -272,6 +280,7 @@
 				61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */,
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
 				61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */,
+				61E427551B3412CA00143F7C /* CompanionsViewController.xib in Resources */,
 				61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
 				61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */,
@@ -329,6 +338,7 @@
 				61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */,
 				61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */,
 				61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */,
+				61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
 				61E4274A1B33CCAE00143F7C /* CopmanionsTableViewController.m in Sources */,
