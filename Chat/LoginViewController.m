@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
+#import "CopmanionsTableViewController.h"
 #import <Quickblox/Quickblox.h>
 
 @interface LoginViewController ()
@@ -62,14 +63,16 @@
 
 - (void)enterProfile
 {
+    CopmanionsTableViewController *companionsTVC = [[CopmanionsTableViewController alloc] init];
+    UINavigationController *companionsNC = [[UINavigationController alloc] initWithRootViewController:companionsTVC];
+    companionsNC.tabBarItem.title = @"Собеседники";
+    
     ProfileViewController *profileVC = [[ProfileViewController alloc] init];
-    
     UINavigationController *profileNC = [[UINavigationController alloc] initWithRootViewController:profileVC];
-    
     profileNC.tabBarItem.title = @"Профиль";
     
     self.tabController = [[UITabBarController alloc] init];
-    self.tabController.viewControllers = @[profileNC];
+    self.tabController.viewControllers = @[companionsNC, profileNC];
     
     [self presentViewController:self.tabController
                        animated:YES
