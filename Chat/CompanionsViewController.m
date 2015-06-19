@@ -8,8 +8,12 @@
 
 #import "CompanionsViewController.h"
 #import "CompanionsTableViewCell.h"
+#import <Quickblox/Quickblox.h>
 
 @interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource>
+
+- (IBAction)addCompanion:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *companionField;
 
 @end
 
@@ -62,4 +66,8 @@
 }
 */
 
+- (IBAction)addCompanion:(id)sender
+{
+    [[QBChat instance] addUserToContactListRequest:[self.companionField.text intValue]];
+}
 @end
