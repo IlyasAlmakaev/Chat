@@ -37,7 +37,19 @@
 
 - (IBAction)registration:(id)sender
 {
-    [self enterProfile];
+    // Create QuickBlox User entity
+    QBUUser *user = [QBUUser user];
+    user.password = self.passwordField.text;
+    user.login = self.loginField.text;
+    
+    [QBRequest signUp:user successBlock:^(QBResponse *response, QBUUser *user) {
+        [self enterProfile];
+
+    } errorBlock:^(QBResponse *response) {
+        NSLog(@"%@", [response.error description]);
+    }];
+    
+    
 }
 
 - (IBAction)logON:(id)sender

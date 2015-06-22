@@ -11,12 +11,13 @@
 #import <Quickblox/Quickblox.h>
 
 @interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource>
+{
 
-
-
+UITableView *tView;
+}
 
 @property (nonatomic, strong) NSArray *users;
-@property (nonatomic, strong) UITableView *tView;
+
 
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
@@ -31,13 +32,13 @@
 /*    self.navigationItem.title = @"Собеседники";
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
-                                                                                           action:@selector(add)];*/
+                                                                                           action:@selector(add)];*/ 
     
-  //  [self.tableView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
     self.users = [NSMutableArray array];
     
-    self.tView.delegate = self;
-    self.tView.dataSource = self;
+    tView.delegate = self;
+    tView.dataSource = self;
+    [tView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
 }
 
 #pragma mark - Table view data source
@@ -79,7 +80,7 @@
     [QBRequest usersForPage:[QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *arrayOfUsers) {
 
         self.users = arrayOfUsers;
-        [self.tView reloadData];
+        [tView reloadData];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         QBUUser *user;
     //    NSLog(@"User = %@", user.login);
