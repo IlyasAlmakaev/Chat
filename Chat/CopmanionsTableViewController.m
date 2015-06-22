@@ -8,8 +8,11 @@
 
 #import "CopmanionsTableViewController.h"
 #import "CompanionsTableViewCell.h"
+#import <Quickblox/Quickblox.h>
 
 @interface CopmanionsTableViewController ()
+
+@property (nonatomic, strong) NSArray *users;
 
 @end
 
@@ -18,12 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.users = [NSMutableArray array];
+    
     self.navigationItem.title = @"Собеседники";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(add)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
+    [self retrieveUsers];
 }
 
 #pragma mark - Table view data source
@@ -35,7 +41,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return [self.users count];;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -43,12 +49,34 @@
     
     // Configure the cell...
     
+    QBUUser *user = (self.users)[[indexPath row]];
+    NSLog(@"Test user load = %@", user.login);
+    cell.textLabel.text = user.login;
+    
     return cell;
 }
 
 - (void)add
 {
     
+}
+
+// Retrieve QuickBlox Users
+- (void)retrieveUsers
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [QBRequest usersForPage:[QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *arrayOfUsers) {
+        
+        self.users = arrayOfUsers;
+        [self.tableView reloadData];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        QBUUser *user;
+        //    NSLog(@"User = %@", user.login);
+    } errorBlock:^(QBResponse *response) {
+        NSLog(@"Errors = %@", response.error);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
 }
 
 /*

@@ -9,9 +9,10 @@
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
 #import "CompanionsViewController.h"
+#import "CopmanionsTableViewController.h"
 #import <Quickblox/Quickblox.h>
 
-@interface LoginViewController ()
+@interface LoginViewController () <QBChatDelegate>
 
 - (IBAction)registration:(id)sender;
 - (IBAction)logON:(id)sender;
@@ -44,6 +45,31 @@
     // Authenticate user
     [QBRequest logInWithUserLogin:self.loginField.text password:self.passwordField.text
                      successBlock:[self successBlock] errorBlock:[self errorBlock]];
+    // Create session with user
+  /*  NSString *userLogin = self.loginField.text;
+    NSString *userPassword = self.passwordField.text;
+    
+    QBSessionParameters *parameters = [QBSessionParameters new];
+    parameters.userLogin = userLogin;
+    parameters.userPassword = userPassword;
+    
+    [QBRequest createSessionWithExtendedParameters:parameters successBlock:^(QBResponse *response, QBASession *session) {
+        // Sign In to QuickBlox Chat
+        QBUUser *currentUser = [QBUUser user];
+        currentUser.ID = session.userID; // your current user's ID
+        currentUser.password = userPassword; // your current user's password
+        
+        // set Chat delegate
+        [[QBChat instance] addDelegate:self];
+        
+        // login to Chat
+        [[QBChat instance] loginWithUser:currentUser];
+        
+        [self enterProfile];
+    } errorBlock:^(QBResponse *response) {
+        // error handling
+        NSLog(@"error: %@", response.error);
+    }];*/
     
 }
 
@@ -63,7 +89,7 @@
 
 - (void)enterProfile
 {
-    CompanionsViewController *companionsVC = [[CompanionsViewController alloc] init];
+    CopmanionsTableViewController *companionsVC = [[CopmanionsTableViewController alloc] init];
 //    UINavigationController *companionsNC = [[UINavigationController alloc] initWithRootViewController:companionsVC];
  //   companionsVC.tabBarItem.title = @"Собеседники";
     

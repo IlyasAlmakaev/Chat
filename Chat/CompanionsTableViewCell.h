@@ -10,4 +10,6 @@
 
 @interface CompanionsTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *nameUser;
+
 @end

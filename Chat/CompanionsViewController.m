@@ -12,6 +12,12 @@
 
 @interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource>
 
+
+
+
+@property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) UITableView *tView;
+
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
 
@@ -28,6 +34,10 @@
                                                                                            action:@selector(add)];*/
     
   //  [self.tableView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
+    self.users = [NSMutableArray array];
+    
+    self.tView.delegate = self;
+    self.tView.dataSource = self;
 }
 
 #pragma mark - Table view data source
@@ -39,12 +49,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return [self.users count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  //   CompanionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id" forIndexPath:indexPath];
+//    CompanionsTableViewCell* cell = [self.tView dequeueReusableCellWithIdentifier:@"id"];
     CompanionsTableViewCell *cell = (CompanionsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"id"];
+    
+    QBUUser *user = (self.users)[[indexPath row]];
+    NSLog(@"Test user load = %@", user.login);
+    cell.nameUser.text = user.login;
     
     // Configure the cell...
     
@@ -53,21 +68,35 @@
 
 - (void)add
 {
-    
+
 }
 
-/*
-#pragma mark - Navigation
+// Retrieve QuickBlox Users
+- (void)retrieveUsers
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [QBRequest usersForPage:[QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *arrayOfUsers) {
+
+        self.users = arrayOfUsers;
+        [self.tView reloadData];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        QBUUser *user;
+    //    NSLog(@"User = %@", user.login);
+    } errorBlock:^(QBResponse *response) {
+        NSLog(@"Errors = %@", response.error);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
 }
-*/
 
 - (IBAction)addCompanion:(id)sender
 {
-    [[QBChat instance] addUserToContactListRequest:[self.companionField.text intValue]];
+ //   [[QBChat instance] addUserToContactListRequest:3669851];
+ //   [[QBChat instance] confirmAddContactRequest:3669851];
+ //   QBUUser *user;
+  //  NSLog(@"%@", user.login);
+    [self retrieveUsers];
+   
+  //  [self.companionField.text intValue]
 }
 @end
