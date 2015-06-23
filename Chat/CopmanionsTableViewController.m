@@ -10,7 +10,7 @@
 #import "CompanionsTableViewCell.h"
 #import <Quickblox/Quickblox.h>
 
-@interface CopmanionsTableViewController ()
+@interface CopmanionsTableViewController () <QBChatDelegate>
 
 @property (nonatomic, strong) NSArray *users;
 
@@ -21,6 +21,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    QBSessionParameters *parameters = [QBSessionParameters new];
+    parameters.userLogin = self.userLogin;
+    parameters.userPassword = self.userPassword;
+    
+    [QBRequest createSessionWithExtendedParameters:parameters successBlock:^(QBResponse *response, QBASession *session) {
+        // Sign In to QuickBlox Chat
+        QBUUser *currentUser = [QBUUser user];
+        currentUser.ID = session.userID; // your current user's ID
+        currentUser.password = self.userPassword; // your current user's password
+        
+        // set Chat delegate
+        [[QBChat instance] addDelegate:self];
+        
+        // login to Chat
+        [[QBChat instance] loginWithUser:currentUser];
+
+    } errorBlock:^(QBResponse *response) {
+        // error handling
+        NSLog(@"error: %@", response.error);
+    }];
+    
     self.users = [NSMutableArray array];
     
     self.navigationItem.title = @"Собеседники";
@@ -29,7 +50,20 @@
                                                                                            action:@selector(add)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
-    [self retrieveUsers];
+    
+    
+    NSLog(@"Contact complite");
+    
+    //   [self retrieveUsers];
+}
+
+#pragma mark -
+#pragma mark QBChatDelegate
+
+- (void)chatDidReceiveContactAddRequestFromUser:(NSUInteger)userID{
+    // do something
+    NSLog(@"Request from user ID = %zd", userID);
+    [[QBChat instance] confirmAddContactRequest:userID];
 }
 
 #pragma mark - Table view data source
@@ -54,6 +88,22 @@
     cell.textLabel.text = user.login;
     
     return cell;
+}
+
+#pragma mark -
+#pragma mark QBChatDelegate
+
+// Chat delegate
+-(void) chatDidLogin
+{
+    // You have successfully signed in to QuickBlox Chat
+ //   [[QBChat instance] addUserToContactListRequest:3669851];
+ //   NSLog(@"Proverka");
+}
+
+- (void)chatDidNotLoginWithError:(NSError *)error
+{
+    NSLog(@"error: %@", error);
 }
 
 - (void)add

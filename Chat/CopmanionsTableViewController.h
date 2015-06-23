@@ -10,4 +10,7 @@
 
 @interface CopmanionsTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSString *userLogin;
+@property (nonatomic, strong) NSString *userPassword;
+
 @end

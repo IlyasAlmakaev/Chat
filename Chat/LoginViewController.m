@@ -12,7 +12,7 @@
 #import "CopmanionsTableViewController.h"
 #import <Quickblox/Quickblox.h>
 
-@interface LoginViewController () <QBChatDelegate>
+@interface LoginViewController ()
 
 - (IBAction)registration:(id)sender;
 - (IBAction)logON:(id)sender;
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @property (strong, nonatomic) UITabBarController *tabController;
+@property (strong, nonatomic) CopmanionsTableViewController *companionsTVC;
 
 @end
 
@@ -28,12 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.companionsTVC = [[CopmanionsTableViewController alloc] init];
+    
     [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
         NSLog(@"Authorisation");
     } errorBlock:^(QBResponse *response) {
         NSLog(@"%@",[response.error description]);
-    }];}
+    }];
+}
 
 - (IBAction)registration:(id)sender
 {
@@ -54,41 +58,21 @@
 
 - (IBAction)logON:(id)sender
 {
-    // Authenticate user
-    [QBRequest logInWithUserLogin:self.loginField.text password:self.passwordField.text
-                     successBlock:[self successBlock] errorBlock:[self errorBlock]];
+    
     // Create session with user
-  /*  NSString *userLogin = self.loginField.text;
-    NSString *userPassword = self.passwordField.text;
+    self.companionsTVC.userLogin = self.loginField.text;
+    self.companionsTVC.userPassword = self.passwordField.text;
     
-    QBSessionParameters *parameters = [QBSessionParameters new];
-    parameters.userLogin = userLogin;
-    parameters.userPassword = userPassword;
-    
-    [QBRequest createSessionWithExtendedParameters:parameters successBlock:^(QBResponse *response, QBASession *session) {
-        // Sign In to QuickBlox Chat
-        QBUUser *currentUser = [QBUUser user];
-        currentUser.ID = session.userID; // your current user's ID
-        currentUser.password = userPassword; // your current user's password
-        
-        // set Chat delegate
-        [[QBChat instance] addDelegate:self];
-        
-        // login to Chat
-        [[QBChat instance] loginWithUser:currentUser];
-        
-        [self enterProfile];
-    } errorBlock:^(QBResponse *response) {
-        // error handling
-        NSLog(@"error: %@", response.error);
-    }];*/
+    // Authenticate user
+    [QBRequest logInWithUserLogin:self.companionsTVC.userLogin password:self.companionsTVC.userPassword
+                     successBlock:[self successBlock] errorBlock:[self errorBlock]];
     
 }
 
 - (void (^)(QBResponse *response, QBUUser *user))successBlock
 {
     return ^(QBResponse *response, QBUUser *user) {
-        [self enterProfile];
+            [self enterProfile];
     };
 }
 
@@ -101,7 +85,7 @@
 
 - (void)enterProfile
 {
-    CopmanionsTableViewController *companionsVC = [[CopmanionsTableViewController alloc] init];
+    
 //    UINavigationController *companionsNC = [[UINavigationController alloc] initWithRootViewController:companionsVC];
  //   companionsVC.tabBarItem.title = @"Собеседники";
     
@@ -112,9 +96,8 @@
     /*   self.tabController = [[UITabBarController alloc] init];
     self.tabController.viewControllers = @[companionsVC, profileNC];*/
     
-    [self presentViewController:companionsVC
+    [self presentViewController:self.companionsTVC
                        animated:YES
-                     completion:nil];
-}
+                     completion:nil];}
 
 @end
