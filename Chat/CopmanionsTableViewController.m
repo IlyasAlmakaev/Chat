@@ -51,11 +51,6 @@
                                                                                            action:@selector(add)];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
-    
-    
-    NSLog(@"Contact complite");
-    
-       [self retrieveUsers];
 }
 
 #pragma mark -
