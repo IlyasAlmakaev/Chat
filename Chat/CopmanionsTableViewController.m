@@ -13,6 +13,7 @@
 @interface CopmanionsTableViewController () <QBChatDelegate>
 
 @property (nonatomic, strong) NSArray *users;
+@property (nonatomic, strong) NSMutableArray *userContacts;
 
 @end
 
@@ -42,8 +43,8 @@
         NSLog(@"error: %@", response.error);
     }];
     
-    self.users = [NSMutableArray array];
-    
+    self.users = [NSArray array];
+    self.userContacts = [NSMutableArray array];
     self.navigationItem.title = @"Собеседники";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
@@ -54,7 +55,7 @@
     
     NSLog(@"Contact complite");
     
-    //   [self retrieveUsers];
+       [self retrieveUsers];
 }
 
 #pragma mark -
@@ -90,6 +91,14 @@
     return cell;
 }
 
+- (void)chatContactListDidChange:(QBContactList *)contactList{
+  //  [[NSNotificationCenter defaultCenter] postNotificationName:ContactListChanged object:nil];
+    NSLog(@"contact list changed");
+    NSLog(@"current contact list %@", [QBChat instance].contactList.contacts);
+//    self.userContacts = [QBChat instance].contactList.contacts;
+    [self retrieveUsers];
+}
+
 #pragma mark -
 #pragma mark QBChatDelegate
 
@@ -97,8 +106,9 @@
 -(void) chatDidLogin
 {
     // You have successfully signed in to QuickBlox Chat
- //   [[QBChat instance] addUserToContactListRequest:3669851];
- //   NSLog(@"Proverka");
+//    [[QBChat instance] addUserToContactListRequest:3740050];
+    NSLog(@"ContactList = %@",[QBChat instance].contactList);
+    NSLog(@"Proverka");
 }
 
 - (void)chatDidNotLoginWithError:(NSError *)error
@@ -114,7 +124,7 @@
 // Retrieve QuickBlox Users
 - (void)retrieveUsers
 {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+ /*   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [QBRequest usersForPage:[QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *arrayOfUsers) {
         
@@ -126,7 +136,30 @@
     } errorBlock:^(QBResponse *response) {
         NSLog(@"Errors = %@", response.error);
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];*/
+    NSLog(@"Array of user Contacts = %@", [QBChat instance].contactList.contacts);
+    
+    for (QBContactListItem * contact in [QBChat instance].contactList.contacts)
+    {
+        NSString * userIDString = [NSString stringWithFormat:@"%ld", (unsigned long)contact.userID];
+        
+        [self.userContacts addObject:userIDString];
+        NSLog(@"ID Array = %@", self.userContacts);
+    }
+
+    if (self.userContacts == nil)
+        return;
+else
+{
+    [QBRequest usersWithIDs:self.userContacts page:[QBGeneralResponsePage responsePageWithCurrentPage:1 perPage:10] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
+        // Successful response with page information and users array
+        NSLog(@"User contacts for tableView = %@", users);
+        self.users = users;
+        [self.tableView reloadData];
+    } errorBlock:^(QBResponse *response) {
+        // Handle error here
     }];
+}
 }
 
 /*
