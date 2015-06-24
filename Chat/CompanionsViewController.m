@@ -10,10 +10,11 @@
 #import "CompanionsTableViewCell.h"
 #import <Quickblox/Quickblox.h>
 
-@interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate>
+@interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *userContacts;
+@property NSInteger *contactID;
 
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
@@ -70,16 +71,45 @@
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Нет"])
+    {
+        NSLog(@"Не принял контакт с ID %zd", self.contactID);
+    }
+    else if([title isEqualToString:@"Да"])
+    {
+        
+        [[QBChat instance] confirmAddContactRequest:(NSUInteger)self.contactID];
+        NSLog(@"Test id = %zd", self.contactID);
+        NSLog(@"Button Да was selected.");
+        self.contactID = nil;
+    }
+}
+
 #pragma mark -
 #pragma mark QBChatDelegate
 
-- (void)chatDidReceiveContactAddRequestFromUser:(NSUInteger)userID{
-    // do something
+- (void)chatDidReceiveContactAddRequestFromUser:(NSUInteger)userID
+{
+    
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Добавить контакт с ID %ld", (unsigned long)userID]
+                                                      message:nil
+                                                     delegate:self
+                                            cancelButtonTitle:@"Нет"
+                                            otherButtonTitles:@"Да", nil];
+    
+    [message show];
+    self.contactID = (NSInteger)userID;
     NSLog(@"Request from user ID = %zd", userID);
-    [[QBChat instance] confirmAddContactRequest:userID];
+    NSLog(@"Test1 id = %zd", self.contactID);
+ //   [[QBChat instance] confirmAddContactRequest:userID];
 }
 
-- (void)chatContactListDidChange:(QBContactList *)contactList{
+- (void)chatContactListDidChange:(QBContactList *)contactList
+{
     //  [[NSNotificationCenter defaultCenter] postNotificationName:ContactListChanged object:nil];
     NSLog(@"contact list changed");
     NSLog(@"current contact list %@", [QBChat instance].contactList.contacts);
@@ -91,7 +121,7 @@
 {
     // You have successfully signed in to QuickBlox Chat
     //    [[QBChat instance] addUserToContactListRequest:3740050];
-    NSLog(@"ContactList = %@",[QBChat instance].contactList);
+    NSLog(@"ContactList = %@", [QBChat instance].contactList);
     NSLog(@"Proverka");
 }
 
@@ -223,7 +253,8 @@
  //   [[QBChat instance] confirmAddContactRequest:3669851];
  //   QBUUser *user;
   //  NSLog(@"%@", user.login);
-    [self retrieveUsers];
+    
+    [[QBChat instance] addUserToContactListRequest:[self.companionField.text integerValue]];
     [self.view endEditing:YES];
    
   //  [self.companionField.text intValue]
