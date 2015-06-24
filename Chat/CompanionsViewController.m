@@ -255,6 +255,7 @@
   //  NSLog(@"%@", user.login);
     
     [[QBChat instance] addUserToContactListRequest:[self.companionField.text integerValue]];
+    self.companionField.text = nil;
     [self.view endEditing:YES];
    
   //  [self.companionField.text intValue]
