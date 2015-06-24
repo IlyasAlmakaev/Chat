@@ -10,7 +10,7 @@
 #import "CompanionsTableViewCell.h"
 #import <Quickblox/Quickblox.h>
 
-@interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate, UIAlertViewDelegate>
+@interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *userContacts;
@@ -56,9 +56,13 @@
     self.users = [NSArray array];
     self.userContacts = [NSMutableArray array];
     
+    self.companionField.delegate = self;
     self.tView.delegate = self;
     self.tView.dataSource = self;
     [self.tView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.tView addGestureRecognizer:gestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -157,6 +161,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+
+    
+}
+
 - (void)add
 {
 
@@ -211,12 +221,22 @@
 // Hide Keyboard/DateBoard/RepeatOptions
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.view endEditing:YES];
+    [self hideKeyboard];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+}
+
+- (void) hideKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 
