@@ -17,6 +17,7 @@
 
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
+@property (weak, nonatomic) IBOutlet UIButton *addContactButton;
 @property (weak, nonatomic) IBOutlet UITableView *tView;
 
 @end
@@ -57,6 +58,16 @@
     self.tView.delegate = self;
     self.tView.dataSource = self;
     [self.tView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    // Set keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
 }
 
 #pragma mark -
@@ -163,6 +174,49 @@
     
 }
 
+#pragma mark
+#pragma mark UITextFieldDelegate
+
+// Hide Keyboard/DateBoard/RepeatOptions
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+#pragma mark
+#pragma mark Keyboard notifications
+
+- (void)keyboardWillShow:(NSNotification *)note
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.companionField.transform = CGAffineTransformMakeTranslation(0, -250);
+        self.addContactButton.transform = CGAffineTransformMakeTranslation(0, -250);
+        self.tView.frame = CGRectMake(self.tView.frame.origin.x,
+                                                  self.tView.frame.origin.y,
+                                                  self.tView.frame.size.width,
+                                                  self.tView.frame.size.height-252);
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)note
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.companionField.transform = CGAffineTransformIdentity;
+        self.addContactButton.transform = CGAffineTransformIdentity;
+        self.tView.frame = CGRectMake(self.tView.frame.origin.x,
+                                                  self.tView.frame.origin.y,
+                                                  self.tView.frame.size.width,
+                                                  self.tView.frame.size.height+252);
+    }];
+}
+
+
 - (IBAction)addCompanion:(id)sender
 {
  //   [[QBChat instance] addUserToContactListRequest:3669851];
@@ -170,6 +224,7 @@
  //   QBUUser *user;
   //  NSLog(@"%@", user.login);
     [self retrieveUsers];
+    [self.view endEditing:YES];
    
   //  [self.companionField.text intValue]
 }
