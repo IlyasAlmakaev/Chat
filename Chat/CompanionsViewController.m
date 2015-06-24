@@ -77,6 +77,7 @@
     
     if([title isEqualToString:@"Нет"])
     {
+        [[QBChat instance] rejectAddContactRequest:(NSUInteger)self.contactID];
         NSLog(@"Не принял контакт с ID %zd", self.contactID);
     }
     else if([title isEqualToString:@"Да"])
@@ -85,8 +86,8 @@
         [[QBChat instance] confirmAddContactRequest:(NSUInteger)self.contactID];
         NSLog(@"Test id = %zd", self.contactID);
         NSLog(@"Button Да was selected.");
-        self.contactID = nil;
     }
+    self.contactID = nil;
 }
 
 #pragma mark -
