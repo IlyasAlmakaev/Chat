@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) UITabBarController *tabController;
 @property (strong, nonatomic) CopmanionsTableViewController *companionsTVC;
+@property (strong, nonatomic) CompanionsViewController *companionsVC;
 
 @end
 
@@ -31,6 +32,7 @@
     [super viewDidLoad];
     
     self.companionsTVC = [[CopmanionsTableViewController alloc] init];
+    self.companionsVC = [[CompanionsViewController alloc] init];
     
     [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
         NSLog(@"Authorisation");
@@ -60,11 +62,11 @@
 {
     
     // Create session with user
-    self.companionsTVC.userLogin = self.loginField.text;
-    self.companionsTVC.userPassword = self.passwordField.text;
+    self.companionsVC.userLogin = self.loginField.text;
+    self.companionsVC.userPassword = self.passwordField.text;
     
     // Authenticate user
-    [QBRequest logInWithUserLogin:self.companionsTVC.userLogin password:self.companionsTVC.userPassword
+    [QBRequest logInWithUserLogin:self.companionsVC.userLogin password:self.companionsVC.userPassword
                      successBlock:[self successBlock] errorBlock:[self errorBlock]];
     
 }
@@ -96,7 +98,7 @@
     /*   self.tabController = [[UITabBarController alloc] init];
     self.tabController.viewControllers = @[companionsVC, profileNC];*/
     
-    [self presentViewController:self.companionsTVC
+    [self presentViewController:self.companionsVC
                        animated:YES
                      completion:nil];}
 
