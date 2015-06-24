@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *userContacts;
+
+@property (nonatomic, strong) NSMutableArray *dialogs;
+
 @property NSInteger *contactID;
 @property (nonatomic, strong) DialogViewController *dialogVC;
 
@@ -56,6 +59,8 @@
     
     self.users = [NSArray array];
     self.userContacts = [NSMutableArray array];
+    
+    self.dialogs = [NSMutableArray array];
     
     self.companionField.delegate = self;
     self.tView.delegate = self;
@@ -180,7 +185,13 @@
     }
     else
     {
-  //      QBChatDialog *dialog = [ChatService shared].dialogs[indexPath.row];
+        QBChatDialog *chatDialog = [QBChatDialog new];
+        chatDialog.type = QBChatDialogTypePrivate;
+        QBUUser *user = (self.users)[[indexPath row]];
+        chatDialog.occupantIDs = @[@(user.ID)];
+        self.dialogVC.dialog = chatDialog;
+        NSLog(@"Chat dialog %@", self.dialogVC.dialog.occupantIDs);
+ //       QBChatDialog *dialog = (self.dialogs)[[indexPath row]];
   //      self.dialogVC.dialog = dialog;
     }
 
@@ -214,6 +225,16 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];*/
     
+    QBResponsePage *page = [QBResponsePage responsePageWithLimit:100 skip:0];
+    
+    [QBRequest dialogsForPage:page extendedRequest:nil successBlock:^(QBResponse *response, NSArray *dialogObjects, NSSet *dialogsUsersIDs, QBResponsePage *page)
+    {
+      self.dialogs = dialogObjects.mutableCopy;
+        NSLog(@"Array of dialogs = %@", self.dialogs);
+    } errorBlock:^(QBResponse *response) {
+        
+    }];
+    
     NSLog(@"Array of user Contacts = %@", [QBChat instance].contactList.contacts);
     
     for (QBContactListItem * contact in [QBChat instance].contactList.contacts)
@@ -224,11 +245,8 @@
         NSLog(@"ID Array = %@", self.userContacts);
     }
     
-    if (self.userContacts == nil)
-        return;
-    else
-    {
-        [QBRequest usersWithIDs:self.userContacts page:[QBGeneralResponsePage responsePageWithCurrentPage:1 perPage:10] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
+
+        [QBRequest usersWithIDs:self.userContacts page:[QBGeneralResponsePage responsePageWithCurrentPage:1 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
             // Successful response with page information and users array
             NSLog(@"User contacts for tableView = %@", users);
             self.users = users;
@@ -236,8 +254,7 @@
         } errorBlock:^(QBResponse *response) {
             // Handle error here
         }];
-    }
-    
+   
 }
 
 #pragma mark
