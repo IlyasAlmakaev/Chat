@@ -8,13 +8,14 @@
 
 #import "CompanionsViewController.h"
 #import "CompanionsTableViewCell.h"
-#import <Quickblox/Quickblox.h>
+#import "DialogViewController.h"
 
 @interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSMutableArray *userContacts;
 @property NSInteger *contactID;
+@property (nonatomic, strong) DialogViewController *dialogVC;
 
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
@@ -28,10 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-/*    self.navigationItem.title = @"Собеседники";
+    self.navigationItem.title = @"Собеседники";
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
-                                                                                           action:@selector(add)];*/
+                                                                                           action:@selector(add)];
     QBSessionParameters *parameters = [QBSessionParameters new];
     parameters.userLogin = self.userLogin;
     parameters.userPassword = self.userPassword;
@@ -61,8 +62,10 @@
     self.tView.dataSource = self;
     [self.tView registerNib:[UINib nibWithNibName:@"CompanionsTableViewCell" bundle:nil] forCellReuseIdentifier:@"id"];
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.tView addGestureRecognizer:gestureRecognizer];
+ //   UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+ //   [self.tView addGestureRecognizer:gestureRecognizer];
+    
+    self.dialogVC = [[DialogViewController alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -163,7 +166,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    UINavigationController *profileNC = [[UINavigationController alloc] initWithRootViewController:self.dialogVC];
+    profileNC.navigationBar.translucent = NO;
+ //   profileNC.tabBarItem.title = @"Имя собеседника";
+    
+    /*   self.tabController = [[UITabBarController alloc] init];
+     self.tabController.viewControllers = @[companionsVC, profileNC];*/
+    
+    if(self.createdDialog != nil)
+    {
+        self.dialogVC.dialog = self.createdDialog;
+        self.createdDialog = nil;
+    }
+    else
+    {
+  //      QBChatDialog *dialog = [ChatService shared].dialogs[indexPath.row];
+  //      self.dialogVC.dialog = dialog;
+    }
 
+    
+    [self presentViewController:profileNC
+                       animated:YES
+                     completion:nil];
+    NSLog(@"Go to dialogVC");
     
 }
 
@@ -224,14 +249,9 @@
     [self hideKeyboard];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [self.view endEditing:YES];
+    [self hideKeyboard];
 }
 
 - (void) hideKeyboard
@@ -281,4 +301,5 @@
    
   //  [self.companionField.text intValue]
 }
+
 @end

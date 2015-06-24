@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Quickblox/Quickblox.h>
 
 @interface CompanionsViewController : UIViewController
 
 @property (nonatomic, strong) NSString *userLogin;
 @property (nonatomic, strong) NSString *userPassword;
+
+@property (strong, nonatomic) QBChatDialog *createdDialog;
 
 @end

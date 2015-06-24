@@ -9,7 +9,6 @@
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
 #import "CompanionsViewController.h"
-#import "CopmanionsTableViewController.h"
 #import <Quickblox/Quickblox.h>
 
 @interface LoginViewController ()
@@ -20,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @property (strong, nonatomic) UITabBarController *tabController;
-@property (strong, nonatomic) CopmanionsTableViewController *companionsTVC;
 @property (strong, nonatomic) CompanionsViewController *companionsVC;
 
 @end
@@ -31,7 +29,6 @@
 {
     [super viewDidLoad];
     
-    self.companionsTVC = [[CopmanionsTableViewController alloc] init];
     self.companionsVC = [[CompanionsViewController alloc] init];
     
     [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
@@ -88,7 +85,8 @@
 - (void)enterProfile
 {
     
-//    UINavigationController *companionsNC = [[UINavigationController alloc] initWithRootViewController:companionsVC];
+    UINavigationController *companionsNC = [[UINavigationController alloc] initWithRootViewController:self.companionsVC];
+    companionsNC.navigationBar.translucent = NO;
  //   companionsVC.tabBarItem.title = @"Собеседники";
     
     ProfileViewController *profileVC = [[ProfileViewController alloc] init];
@@ -98,7 +96,7 @@
     /*   self.tabController = [[UITabBarController alloc] init];
     self.tabController.viewControllers = @[companionsVC, profileNC];*/
     
-    [self presentViewController:self.companionsVC
+    [self presentViewController:companionsNC
                        animated:YES
                      completion:nil];}
 

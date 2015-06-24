@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2B4BDE250E19BB1E849368 /* libPods.a */; };
-		61E4274A1B33CCAE00143F7C /* CopmanionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */; };
-		61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */; };
 		61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */; };
 		61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */; };
 		61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E427521B3412CA00143F7C /* CompanionsViewController.m */; };
@@ -19,10 +17,10 @@
 		61E891B21B317B7400F77132 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B11B317B7400F77132 /* CFNetwork.framework */; };
 		61E891B41B317B9300F77132 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B31B317B9300F77132 /* SystemConfiguration.framework */; };
 		61E891B61B317BC800F77132 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E891B51B317BC800F77132 /* MobileCoreServices.framework */; };
+		61F8B1A01B3A8F3000FAD30C /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F8B19E1B3A8F3000FAD30C /* DialogViewController.m */; };
+		61F8B1A11B3A8F3000FAD30C /* DialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61F8B19F1B3A8F3000FAD30C /* DialogViewController.xib */; };
 		61FECFCE1B301A47003B3FE8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFCD1B301A47003B3FE8 /* main.m */; };
 		61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFD01B301A47003B3FE8 /* AppDelegate.m */; };
-		61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFD31B301A47003B3FE8 /* ViewController.m */; };
-		61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFD51B301A47003B3FE8 /* Main.storyboard */; };
 		61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFD81B301A47003B3FE8 /* Images.xcassets */; };
 		61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */; };
 		61FECFE81B301A47003B3FE8 /* ChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 61FECFE71B301A47003B3FE8 /* ChatTests.m */; };
@@ -43,9 +41,6 @@
 /* Begin PBXFileReference section */
 		177D2364BC713F960BA78256 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FEC9536C33C05582E847F5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		61E427471B33CCAE00143F7C /* CopmanionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopmanionsTableViewController.h; sourceTree = "<group>"; };
-		61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopmanionsTableViewController.m; sourceTree = "<group>"; };
-		61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CopmanionsTableViewController.xib; sourceTree = "<group>"; };
 		61E4274C1B3400C200143F7C /* CompanionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanionsTableViewCell.h; sourceTree = "<group>"; };
 		61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanionsTableViewCell.m; sourceTree = "<group>"; };
 		61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanionsTableViewCell.xib; sourceTree = "<group>"; };
@@ -58,14 +53,14 @@
 		61E891B11B317B7400F77132 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		61E891B31B317B9300F77132 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		61E891B51B317BC800F77132 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		61F8B19D1B3A8F3000FAD30C /* DialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
+		61F8B19E1B3A8F3000FAD30C /* DialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
+		61F8B19F1B3A8F3000FAD30C /* DialogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogViewController.xib; sourceTree = "<group>"; };
 		61FECFC81B301A47003B3FE8 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61FECFCC1B301A47003B3FE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61FECFCD1B301A47003B3FE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		61FECFCF1B301A47003B3FE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		61FECFD01B301A47003B3FE8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		61FECFD21B301A47003B3FE8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		61FECFD31B301A47003B3FE8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		61FECFD61B301A47003B3FE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61FECFD81B301A47003B3FE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		61FECFDB1B301A47003B3FE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		61FECFE11B301A47003B3FE8 /* ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,26 +139,23 @@
 			children = (
 				61FECFCF1B301A47003B3FE8 /* AppDelegate.h */,
 				61FECFD01B301A47003B3FE8 /* AppDelegate.m */,
-				61FECFD21B301A47003B3FE8 /* ViewController.h */,
-				61FECFD31B301A47003B3FE8 /* ViewController.m */,
-				61FECFD51B301A47003B3FE8 /* Main.storyboard */,
-				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
-				61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */,
 				61FECFF11B302328003B3FE8 /* LoginViewController.h */,
 				61FECFF21B302328003B3FE8 /* LoginViewController.m */,
 				61FECFF31B302328003B3FE8 /* LoginViewController.xib */,
 				61E891AC1B313E9800F77132 /* ProfileViewController.h */,
 				61E891AD1B313E9800F77132 /* ProfileViewController.m */,
 				61E891AE1B313E9800F77132 /* ProfileViewController.xib */,
-				61E427471B33CCAE00143F7C /* CopmanionsTableViewController.h */,
-				61E427481B33CCAE00143F7C /* CopmanionsTableViewController.m */,
-				61E427491B33CCAE00143F7C /* CopmanionsTableViewController.xib */,
 				61E4274C1B3400C200143F7C /* CompanionsTableViewCell.h */,
 				61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */,
 				61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */,
 				61E427511B3412CA00143F7C /* CompanionsViewController.h */,
 				61E427521B3412CA00143F7C /* CompanionsViewController.m */,
 				61E427531B3412CA00143F7C /* CompanionsViewController.xib */,
+				61F8B19D1B3A8F3000FAD30C /* DialogViewController.h */,
+				61F8B19E1B3A8F3000FAD30C /* DialogViewController.m */,
+				61F8B19F1B3A8F3000FAD30C /* DialogViewController.xib */,
+				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
+				61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
 			);
 			path = Chat;
@@ -277,11 +269,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F8B1A11B3A8F3000FAD30C /* DialogViewController.xib in Resources */,
 				61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */,
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
-				61FECFD71B301A47003B3FE8 /* Main.storyboard in Resources */,
 				61E427551B3412CA00143F7C /* CompanionsViewController.xib in Resources */,
-				61E4274B1B33CCAE00143F7C /* CopmanionsTableViewController.xib in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
 				61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */,
 				61FECFD91B301A47003B3FE8 /* Images.xcassets in Resources */,
@@ -337,11 +328,10 @@
 			files = (
 				61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */,
 				61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */,
-				61FECFD41B301A47003B3FE8 /* ViewController.m in Sources */,
+				61F8B1A01B3A8F3000FAD30C /* DialogViewController.m in Sources */,
 				61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
-				61E4274A1B33CCAE00143F7C /* CopmanionsTableViewController.m in Sources */,
 				61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,14 +355,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		61FECFD51B301A47003B3FE8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				61FECFD61B301A47003B3FE8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
