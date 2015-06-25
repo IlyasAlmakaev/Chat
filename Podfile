@@ -1,4 +1,4 @@
 
 platform :ios, '6.0'
 
-pod 'QuickBlox'
+pod 'QuickBlox', '~> 2.3.0'

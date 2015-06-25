@@ -8,7 +8,8 @@
 
 #import "DialogViewController.h"
 
-@interface DialogViewController ()
+@interface DialogViewController () 
+
 @property (weak, nonatomic) IBOutlet UITableView *tView;
 @property (weak, nonatomic) IBOutlet UITextField *sendField;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
@@ -24,6 +25,12 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                           target:self
                                                                                           action:@selector(back)];
+    [[QBChat instance] addDelegate:self];
+    //
+    [QBChat instance].autoReconnectEnabled = YES;
+    //
+    [QBChat instance].streamManagementEnabled = YES;
+    [QBChat instance].streamResumptionEnabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -91,6 +98,29 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)sendAction:(id)sender {
+#pragma mark -
+#pragma mark QBChatDelegate
+
+- (void)chatDidReceiveMessage:(QBChatMessage *)message{
+    
 }
+
+- (void)chatDidNotSendMessage:(QBChatMessage *)message error:(NSError *)error{
+    
+}
+
+- (IBAction)sendAction:(id)sender
+{
+    QBChatMessage *messageSend = [QBChatMessage message];
+    [messageSend setText:@"Hey there"];
+    //
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"save_to_history"] = @YES;
+    [messageSend setCustomParameters:params];
+    //
+    [self.dialogUsers sendMessage:messageSend];
+}
+
+
+
 @end

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Quickblox/Quickblox.h>
 
-@interface DialogViewController : UIViewController
+@interface DialogViewController : UIViewController <QBChatDelegate>
 
-@property (nonatomic, strong) QBChatDialog *dialog;
+@property (nonatomic, strong) QBChatDialog *dialogUsers;
 
 @end

@@ -1,10 +1,10 @@
 PODS:
-  - QuickBlox (2.2.5)
+  - QuickBlox (2.3.0.1)
 
 DEPENDENCIES:
-  - QuickBlox
+  - QuickBlox (~> 2.3.0)
 
 SPEC CHECKSUMS:
-  QuickBlox: f13fb448a32d3c09efc71a9fd19d7f44092d9dbd
+  QuickBlox: 0c62fa9b6d9d5092b0f0f31b90eabeb7f854ceb5
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.37.2

@@ -19,6 +19,7 @@
 
 @property NSInteger *contactID;
 @property (nonatomic, strong) DialogViewController *dialogVC;
+@property (nonatomic, strong) QBChatDialog *chatinDialog;
 
 - (IBAction)addCompanion:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *companionField;
@@ -180,25 +181,30 @@
     
     if(self.createdDialog != nil)
     {
-        self.dialogVC.dialog = self.createdDialog;
+        self.dialogVC.dialogUsers = self.createdDialog;
         self.createdDialog = nil;
     }
     else
     {
-        QBChatDialog *chatDialog = [QBChatDialog new];
-        chatDialog.type = QBChatDialogTypePrivate;
+        self.chatinDialog = [QBChatDialog new];
+        self.chatinDialog.type = QBChatDialogTypePrivate;
         QBUUser *user = (self.users)[[indexPath row]];
-        chatDialog.occupantIDs = @[@(user.ID)];
-        self.dialogVC.dialog = chatDialog;
-        NSLog(@"Chat dialog %@", self.dialogVC.dialog.occupantIDs);
+        self.chatinDialog.occupantIDs = @[@(user.ID)];
+        self.dialogVC.dialogUsers = self.chatinDialog;
+        NSLog(@"Chat dialog %@", self.dialogVC.dialogUsers.occupantIDs);
  //       QBChatDialog *dialog = (self.dialogs)[[indexPath row]];
   //      self.dialogVC.dialog = dialog;
+        [QBRequest createDialog:self.chatinDialog successBlock:^(QBResponse *response, QBChatDialog *createdDialog) {
+            [self presentViewController:profileNC
+                               animated:YES
+                             completion:nil];
+        } errorBlock:^(QBResponse *response) {
+            
+        }];
     }
 
     
-    [self presentViewController:profileNC
-                       animated:YES
-                     completion:nil];
+
     NSLog(@"Go to dialogVC");
     
 }
