@@ -160,7 +160,7 @@
  //   CompanionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id" forIndexPath:indexPath];
 //    CompanionsTableViewCell* cell = [self.tView dequeueReusableCellWithIdentifier:@"id"];
     CompanionsTableViewCell *cell = (CompanionsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"id"];
-    
+    cell.tag  = indexPath.row;
     QBUUser *user = (self.users)[[indexPath row]];
     NSLog(@"Test user load = %@", user.login);
     cell.nameUser.text = user.login;
@@ -186,6 +186,10 @@
     }
     else
     {
+        
+   //     QBChatDialog *dialog = [ChatService shared].dialogs[((UITableViewCell *)sender).tag];
+   //     self.dialogVC.dialogUsers = dialog;
+        
         self.chatinDialog = [QBChatDialog new];
         self.chatinDialog.type = QBChatDialogTypePrivate;
         QBUUser *user = (self.users)[[indexPath row]];
@@ -202,11 +206,7 @@
             
         }];
     }
-
-    
-
     NSLog(@"Go to dialogVC");
-    
 }
 
 - (void)add

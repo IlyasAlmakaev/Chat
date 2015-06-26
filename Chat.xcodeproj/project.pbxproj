@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2B4BDE250E19BB1E849368 /* libPods.a */; };
+		61E1643F1B3BC5F900331DD9 /* DialogTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E1643D1B3BC5F900331DD9 /* DialogTableViewCell.m */; };
+		61E164401B3BC5F900331DD9 /* DialogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E1643E1B3BC5F900331DD9 /* DialogTableViewCell.xib */; };
+		61E164431B3BF12B00331DD9 /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E164421B3BF12B00331DD9 /* ChatService.m */; };
 		61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */; };
 		61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */; };
 		61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E427521B3412CA00143F7C /* CompanionsViewController.m */; };
@@ -41,6 +44,11 @@
 /* Begin PBXFileReference section */
 		177D2364BC713F960BA78256 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5FEC9536C33C05582E847F5E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		61E1643C1B3BC5F900331DD9 /* DialogTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogTableViewCell.h; sourceTree = "<group>"; };
+		61E1643D1B3BC5F900331DD9 /* DialogTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogTableViewCell.m; sourceTree = "<group>"; };
+		61E1643E1B3BC5F900331DD9 /* DialogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DialogTableViewCell.xib; sourceTree = "<group>"; };
+		61E164411B3BF12B00331DD9 /* ChatService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatService.h; sourceTree = "<group>"; };
+		61E164421B3BF12B00331DD9 /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		61E4274C1B3400C200143F7C /* CompanionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanionsTableViewCell.h; sourceTree = "<group>"; };
 		61E4274D1B3400C200143F7C /* CompanionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanionsTableViewCell.m; sourceTree = "<group>"; };
 		61E4274E1B3400C200143F7C /* CompanionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanionsTableViewCell.xib; sourceTree = "<group>"; };
@@ -154,6 +162,11 @@
 				61F8B19D1B3A8F3000FAD30C /* DialogViewController.h */,
 				61F8B19E1B3A8F3000FAD30C /* DialogViewController.m */,
 				61F8B19F1B3A8F3000FAD30C /* DialogViewController.xib */,
+				61E1643C1B3BC5F900331DD9 /* DialogTableViewCell.h */,
+				61E1643D1B3BC5F900331DD9 /* DialogTableViewCell.m */,
+				61E1643E1B3BC5F900331DD9 /* DialogTableViewCell.xib */,
+				61E164411B3BF12B00331DD9 /* ChatService.h */,
+				61E164421B3BF12B00331DD9 /* ChatService.m */,
 				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
 				61FECFDA1B301A47003B3FE8 /* LaunchScreen.xib */,
 				61FECFCB1B301A47003B3FE8 /* Supporting Files */,
@@ -272,6 +285,7 @@
 				61F8B1A11B3A8F3000FAD30C /* DialogViewController.xib in Resources */,
 				61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */,
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
+				61E164401B3BC5F900331DD9 /* DialogTableViewCell.xib in Resources */,
 				61E427551B3412CA00143F7C /* CompanionsViewController.xib in Resources */,
 				61FECFDC1B301A47003B3FE8 /* LaunchScreen.xib in Resources */,
 				61E891B01B313E9800F77132 /* ProfileViewController.xib in Resources */,
@@ -329,9 +343,11 @@
 				61E4274F1B3400C200143F7C /* CompanionsTableViewCell.m in Sources */,
 				61FECFF41B302328003B3FE8 /* LoginViewController.m in Sources */,
 				61F8B1A01B3A8F3000FAD30C /* DialogViewController.m in Sources */,
+				61E1643F1B3BC5F900331DD9 /* DialogTableViewCell.m in Sources */,
 				61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
+				61E164431B3BF12B00331DD9 /* ChatService.m in Sources */,
 				61E891AF1B313E9800F77132 /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
