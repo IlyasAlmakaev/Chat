@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Quickblox/Quickblox.h>
 #import "LoginViewController.h"
+#import "ChatService.h"
 
 @interface AppDelegate ()
 

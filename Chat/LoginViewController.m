@@ -10,6 +10,7 @@
 #import "ProfileViewController.h"
 #import "CompanionsViewController.h"
 #import <Quickblox/Quickblox.h>
+#import "ChatService.h"
 
 @interface LoginViewController ()
 
@@ -30,12 +31,6 @@
     [super viewDidLoad];
     
     self.companionsVC = [[CompanionsViewController alloc] init];
-    
-    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
-        NSLog(@"Authorisation");
-    } errorBlock:^(QBResponse *response) {
-        NSLog(@"%@",[response.error description]);
-    }];
 }
 
 - (IBAction)registration:(id)sender
@@ -57,29 +52,44 @@
 
 - (IBAction)logON:(id)sender
 {
+    // QuickBlox session creation
+    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
     
-    // Create session with user
-    self.companionsVC.userLogin = self.loginField.text;
-    self.companionsVC.userPassword = self.passwordField.text;
+    extendedAuthRequest.userLogin = self.loginField.text;
+    extendedAuthRequest.userPassword = self.passwordField.text;
+   
     
-    // Authenticate user
-    [QBRequest logInWithUserLogin:self.companionsVC.userLogin password:self.companionsVC.userPassword
-                     successBlock:[self successBlock] errorBlock:[self errorBlock]];
-    
-}
+    //
+    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
+        
+        // Save current user
+        //
+        QBUUser *currentUser = [QBUUser user];
+        currentUser.ID = session.userID;
 
-- (void (^)(QBResponse *response, QBUUser *user))successBlock
-{
-    return ^(QBResponse *response, QBUUser *user) {
-            [self enterProfile];
-    };
-}
-
-- (QBRequestErrorBlock)errorBlock
-{
-    return ^(QBResponse *response) {
-        NSLog(@"%@", [response.error description]);
-    };
+        currentUser.login = self.loginField.text;
+        currentUser.password = self.passwordField.text;
+        
+        // Login to QuickBlox Chat
+        //
+        [[ChatService shared] loginWithUser:currentUser completionBlock:^{
+        }];
+        
+        [self enterProfile];
+        
+    } errorBlock:^(QBResponse *response) {
+        
+        NSString *errorMessage = [[response.error description] stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@")" withString:@""];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }];
+  
 }
 
 - (void)enterProfile

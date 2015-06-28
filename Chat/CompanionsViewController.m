@@ -9,6 +9,8 @@
 #import "CompanionsViewController.h"
 #import "CompanionsTableViewCell.h"
 #import "DialogViewController.h"
+#import "ChatService.h"
+#import "SVProgressHUD.h"
 
 @interface CompanionsViewController () <UITableViewDelegate, UITableViewDataSource, QBChatDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
@@ -37,26 +39,6 @@
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                            target:self
                                                                                            action:@selector(add)];
-    QBSessionParameters *parameters = [QBSessionParameters new];
-    parameters.userLogin = self.userLogin;
-    parameters.userPassword = self.userPassword;
-    
-    [QBRequest createSessionWithExtendedParameters:parameters successBlock:^(QBResponse *response, QBASession *session) {
-        // Sign In to QuickBlox Chat
-        QBUUser *currentUser = [QBUUser user];
-        currentUser.ID = session.userID; // your current user's ID
-        currentUser.password = self.userPassword; // your current user's password
-        
-        // set Chat delegate
-        [[QBChat instance] addDelegate:self];
-        
-        // login to Chat
-        [[QBChat instance] loginWithUser:currentUser];
-        
-    } errorBlock:^(QBResponse *response) {
-        // error handling
-        NSLog(@"error: %@", response.error);
-    }];
     
     self.users = [NSArray array];
     self.userContacts = [NSMutableArray array];
@@ -74,8 +56,38 @@
     self.dialogVC = [[DialogViewController alloc] init];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
+    
+    if([QBSession currentSession].currentUser == nil)
+    {
+        return;
+    }
+    
+    if([ChatService shared].dialogs == nil)
+    {
+        // get dialogs
+        //
+        [SVProgressHUD showWithStatus:@"Loading"];
+        __weak __typeof(self)weakSelf = self;
+        
+        [[ChatService shared] requestDialogsWithCompletionBlock:^
+        {
+            [weakSelf.tView reloadData];
+            [SVProgressHUD dismiss];
+        }];
+    }
+    else
+    {
+        [[ChatService shared] sortDialogs];
+        [self.tView reloadData];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dialogsUpdatedNotification) name:kNotificationDialogsUpdated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(chatDidAccidentallyDisconnectNotification) name:kNotificationChatDidAccidentallyDisconnect object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(groupDialogJoinedNotification) name:kNotificationGroupDialogJoined object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     // Set keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
@@ -83,6 +95,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification object:nil];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark
+#pragma mark Notifications
+
+- (void)dialogsUpdatedNotification{
+    [self.tView reloadData];
+}
+
+- (void)chatDidAccidentallyDisconnectNotification{
+    [self.tView reloadData];
+}
+
+- (void)groupDialogJoinedNotification{
+    [self.tView reloadData];
+}
+
+- (void)willEnterForegroundNotification{
+    [self.tView reloadData];
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -103,47 +142,6 @@
     self.contactID = nil;
 }
 
-#pragma mark -
-#pragma mark QBChatDelegate
-
-- (void)chatDidReceiveContactAddRequestFromUser:(NSUInteger)userID
-{
-    
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Добавить контакт с ID %ld", (unsigned long)userID]
-                                                      message:nil
-                                                     delegate:self
-                                            cancelButtonTitle:@"Нет"
-                                            otherButtonTitles:@"Да", nil];
-    
-    [message show];
-    self.contactID = (NSInteger)userID;
-    NSLog(@"Request from user ID = %zd", userID);
-    NSLog(@"Test1 id = %zd", self.contactID);
- //   [[QBChat instance] confirmAddContactRequest:userID];
-}
-
-- (void)chatContactListDidChange:(QBContactList *)contactList
-{
-    //  [[NSNotificationCenter defaultCenter] postNotificationName:ContactListChanged object:nil];
-    NSLog(@"contact list changed");
-    NSLog(@"current contact list %@", [QBChat instance].contactList.contacts);
-    //    self.userContacts = [QBChat instance].contactList.contacts;
-    [self retrieveUsers];
-}
-
--(void) chatDidLogin
-{
-    // You have successfully signed in to QuickBlox Chat
-    //    [[QBChat instance] addUserToContactListRequest:3740050];
-    NSLog(@"ContactList = %@", [QBChat instance].contactList);
-    NSLog(@"Proverka");
-}
-
-- (void)chatDidNotLoginWithError:(NSError *)error
-{
-    NSLog(@"error: %@", error);
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -153,19 +151,71 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.users count];
+    return [[ChatService shared].dialogs count];;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
  //   CompanionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id" forIndexPath:indexPath];
 //    CompanionsTableViewCell* cell = [self.tView dequeueReusableCellWithIdentifier:@"id"];
     CompanionsTableViewCell *cell = (CompanionsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"id"];
-    cell.tag  = indexPath.row;
+ /*   cell.tag  = indexPath.row;
     QBUUser *user = (self.users)[[indexPath row]];
     NSLog(@"Test user load = %@", user.login);
-    cell.nameUser.text = user.login;
+    cell.nameUser.text = user.login;*/
     
     // Configure the cell...
+    QBChatDialog *chatDialog = [ChatService shared].dialogs[indexPath.row];
+    cell.tag  = indexPath.row;
+    
+    switch (chatDialog.type)
+    {
+        case QBChatDialogTypePrivate:
+        {
+            cell.lastMassageLabel.text = chatDialog.lastMessageText;
+            QBUUser *recipient = [ChatService shared].usersAsDictionary[@(chatDialog.recipientID)];
+            cell.nameUser.text = recipient.login;
+            cell.imagePerson.image = [UIImage imageNamed:@"privateChatIcon"];
+        }
+            break;
+        case QBChatDialogTypeGroup:
+        {
+            cell.lastMassageLabel.text = chatDialog.lastMessageText;
+            cell.nameUser.text = chatDialog.name;
+            cell.imagePerson.image = [UIImage imageNamed:@"GroupChatIcon"];
+        }
+            break;
+   /*     case QBChatDialogTypePublicGroup:
+        {
+            cell.lastMassageLabel.text = chatDialog.lastMessageText;
+            cell.nameUser.text = chatDialog.name;
+            cell.imagePerson.image = [UIImage imageNamed:@"GroupChatIcon"];
+        }
+            break;*/
+            
+        default:
+            break;
+    }
+    
+    // set unread badge
+    if(chatDialog.unreadMessagesCount > 0)
+    {
+        cell.unreadMessageLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)chatDialog.unreadMessagesCount];
+        cell.unreadMessageLabel.hidden = NO;
+    }
+    else
+    {
+        cell.unreadMessageLabel.hidden = YES;
+    }
+    
+    // set group chat joined status
+ /*   UIView *groupChatJoinedStatus =  (UIView *)[cell.contentView viewWithTag:202];
+    if(chatDialog.isJoined){
+        groupChatJoinedStatus.layer.cornerRadius = 5;
+        
+        groupChatJoinedStatus.hidden = NO;
+    }else{
+        groupChatJoinedStatus.hidden = YES;
+    }*/
     
     return cell;
 }
@@ -187,10 +237,13 @@
     else
     {
         
-   //     QBChatDialog *dialog = [ChatService shared].dialogs[((UITableViewCell *)sender).tag];
-   //     self.dialogVC.dialogUsers = dialog;
+        QBChatDialog *dialog = [ChatService shared].dialogs[[indexPath row]];
+        self.dialogVC.dialogUsers = dialog;
         
-        self.chatinDialog = [QBChatDialog new];
+        [self presentViewController:profileNC
+                           animated:YES
+                         completion:nil];
+   /*     self.chatinDialog = [QBChatDialog new];
         self.chatinDialog.type = QBChatDialogTypePrivate;
         QBUUser *user = (self.users)[[indexPath row]];
         self.chatinDialog.occupantIDs = @[@(user.ID)];
@@ -204,63 +257,18 @@
                              completion:nil];
         } errorBlock:^(QBResponse *response) {
             
-        }];
+        }];*/
     }
-    NSLog(@"Go to dialogVC");
+    NSLog(@"Go to dialogVC %@", self.dialogVC.dialogUsers);
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 58;
 }
 
 - (void)add
 {
 
-}
-
-// Retrieve QuickBlox Users
-- (void)retrieveUsers
-{
-/*    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-
-    [QBRequest usersForPage:[QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *arrayOfUsers) {
-
-        self.users = arrayOfUsers;
-        [self.tView reloadData];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        QBUUser *user;
-    //    NSLog(@"User = %@", user.login);
-    } errorBlock:^(QBResponse *response) {
-        NSLog(@"Errors = %@", response.error);
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    }];*/
-    
-    QBResponsePage *page = [QBResponsePage responsePageWithLimit:100 skip:0];
-    
-    [QBRequest dialogsForPage:page extendedRequest:nil successBlock:^(QBResponse *response, NSArray *dialogObjects, NSSet *dialogsUsersIDs, QBResponsePage *page)
-    {
-      self.dialogs = dialogObjects.mutableCopy;
-        NSLog(@"Array of dialogs = %@", self.dialogs);
-    } errorBlock:^(QBResponse *response) {
-        
-    }];
-    
-    NSLog(@"Array of user Contacts = %@", [QBChat instance].contactList.contacts);
-    
-    for (QBContactListItem * contact in [QBChat instance].contactList.contacts)
-    {
-        NSString * userIDString = [NSString stringWithFormat:@"%ld", (unsigned long)contact.userID];
-        
-        [self.userContacts addObject:userIDString];
-        NSLog(@"ID Array = %@", self.userContacts);
-    }
-    
-
-        [QBRequest usersWithIDs:self.userContacts page:[QBGeneralResponsePage responsePageWithCurrentPage:1 perPage:100] successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
-            // Successful response with page information and users array
-            NSLog(@"User contacts for tableView = %@", users);
-            self.users = users;
-            [self.tView reloadData];
-        } errorBlock:^(QBResponse *response) {
-            // Handle error here
-        }];
-   
 }
 
 #pragma mark

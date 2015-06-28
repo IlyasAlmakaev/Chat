@@ -11,5 +11,9 @@
 @interface CompanionsTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nameUser;
+@property (weak, nonatomic) IBOutlet UILabel *lastMassageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unreadMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imagePerson;
 
 @end
