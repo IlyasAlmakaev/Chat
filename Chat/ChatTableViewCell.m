@@ -96,6 +96,11 @@ static UIImage *aquaBubble;
                                                       self.messageTextView.frame.size.width+padding/2, self.messageTextView.frame.size.height+5)];
         self.backgroundImageView.image = orangeBubble;
         
+        CGRect frame = self.nameAndDateLabel.frame;
+        
+        frame.origin.x= padding/2;//pass the cordinate which you want
+        self.nameAndDateLabel.frame = frame;
+        
         self.nameAndDateLabel.textAlignment = NSTextAlignmentLeft;
         self.nameAndDateLabel.text = [NSString stringWithFormat:@"Я, %@", time];
         
