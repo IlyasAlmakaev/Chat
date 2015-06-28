@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1124AD951B405CAE00020FDD /* GroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1124AD931B405CAE00020FDD /* GroupTableViewController.m */; };
+		1124AD961B405CAE00020FDD /* GroupTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1124AD941B405CAE00020FDD /* GroupTableViewController.xib */; };
 		11D65BDC1B40043D00B14481 /* ChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D65BDB1B40043D00B14481 /* ChatTableViewCell.m */; };
 		410B3C23110634BD36FAC6F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2B4BDE250E19BB1E849368 /* libPods.a */; };
 		61E164431B3BF12B00331DD9 /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E164421B3BF12B00331DD9 /* ChatService.m */; };
@@ -41,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1124AD921B405CAE00020FDD /* GroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTableViewController.h; sourceTree = "<group>"; };
+		1124AD931B405CAE00020FDD /* GroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewController.m; sourceTree = "<group>"; };
+		1124AD941B405CAE00020FDD /* GroupTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupTableViewController.xib; sourceTree = "<group>"; };
 		11D65BDA1B40043D00B14481 /* ChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewCell.h; sourceTree = "<group>"; };
 		11D65BDB1B40043D00B14481 /* ChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewCell.m; sourceTree = "<group>"; };
 		177D2364BC713F960BA78256 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +167,9 @@
 				61F8B19F1B3A8F3000FAD30C /* DialogViewController.xib */,
 				11D65BDA1B40043D00B14481 /* ChatTableViewCell.h */,
 				11D65BDB1B40043D00B14481 /* ChatTableViewCell.m */,
+				1124AD921B405CAE00020FDD /* GroupTableViewController.h */,
+				1124AD931B405CAE00020FDD /* GroupTableViewController.m */,
+				1124AD941B405CAE00020FDD /* GroupTableViewController.xib */,
 				61E164411B3BF12B00331DD9 /* ChatService.h */,
 				61E164421B3BF12B00331DD9 /* ChatService.m */,
 				61FECFD81B301A47003B3FE8 /* Images.xcassets */,
@@ -280,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61F8B1A11B3A8F3000FAD30C /* DialogViewController.xib in Resources */,
+				1124AD961B405CAE00020FDD /* GroupTableViewController.xib in Resources */,
 				61E427501B3400C200143F7C /* CompanionsTableViewCell.xib in Resources */,
 				61FECFF51B302328003B3FE8 /* LoginViewController.xib in Resources */,
 				61E427551B3412CA00143F7C /* CompanionsViewController.xib in Resources */,
@@ -341,6 +350,7 @@
 				61F8B1A01B3A8F3000FAD30C /* DialogViewController.m in Sources */,
 				61E427541B3412CA00143F7C /* CompanionsViewController.m in Sources */,
 				61FECFD11B301A47003B3FE8 /* AppDelegate.m in Sources */,
+				1124AD951B405CAE00020FDD /* GroupTableViewController.m in Sources */,
 				61FECFCE1B301A47003B3FE8 /* main.m in Sources */,
 				11D65BDC1B40043D00B14481 /* ChatTableViewCell.m in Sources */,
 				61E164431B3BF12B00331DD9 /* ChatService.m in Sources */,

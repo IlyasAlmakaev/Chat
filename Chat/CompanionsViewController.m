@@ -9,6 +9,7 @@
 #import "CompanionsViewController.h"
 #import "CompanionsTableViewCell.h"
 #import "DialogViewController.h"
+#import "GroupTableViewController.h"
 #import "ChatService.h"
 #import "SVProgressHUD.h"
 
@@ -21,6 +22,7 @@
 
 @property NSInteger *contactID;
 @property (nonatomic, strong) DialogViewController *dialogVC;
+@property (nonatomic, strong) GroupTableViewController *groupTVC;
 @property (nonatomic, strong) QBChatDialog *chatinDialog;
 
 - (IBAction)addCompanion:(id)sender;
@@ -54,6 +56,7 @@
  //   [self.tView addGestureRecognizer:gestureRecognizer];
     
     self.dialogVC = [[DialogViewController alloc] init];
+    self.groupTVC = [[GroupTableViewController alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -268,7 +271,10 @@
 
 - (void)add
 {
-
+UINavigationController *groupNC = [[UINavigationController alloc] initWithRootViewController:self.groupTVC];
+    [self presentViewController:groupNC
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark
