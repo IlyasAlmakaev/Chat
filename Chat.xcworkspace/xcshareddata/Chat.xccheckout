@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C1D97440-C624-44C6-95C5-3078B0C7E821</string>
+	<string>9DD1FD67-766D-4C92-B13A-FA509C7FCEC5</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Chat</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>EE60995DAFB4AA843B12A0E9CDA7A0C8507FAD09</key>
-		<string>https://github.com/IlyasAlmakaev/Chat.git</string>
+		<string>https://gitlab.com/Almakaev/Chat.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Chat.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/IlyasAlmakaev/Chat.git</string>
+	<string>https://gitlab.com/Almakaev/Chat.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
